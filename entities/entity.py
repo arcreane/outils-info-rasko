@@ -1,17 +1,21 @@
 import pygame
 
-class Entity:
-    def __init__(self, x, y, speed):
-        self.rect = pygame.Rect(x, y, 0, 0) # Position et taille
-        self.speed = speed
-        self.vie= vie
-        self.image= image
-        # Tu peux ajouter ici des variables communes (vie, image, etc.)
 
-    def move(self):
-        # Logique de déplacement de base (peut être vide pour l'instant)
+class Entity(pygame.sprite.Sprite):
+    def __init__(self, x, y, width, height):
+        super().__init__()
+        #pour l'instant rectangle a mettre sprite ici après
+        self.image = pygame.Surface((width, height))
+        self.image.fill((255, 0, 255))  # rose
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
+        self.speed = 0
+
+    def update(self):
+        # Méthode pr enfants
         pass
 
     def draw(self, screen):
-        # Méthode pour s'afficher (à surcharger par les enfants)
-        pass
+        # draw image a pos
+        screen.blit(self.image, self.rect)
