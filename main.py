@@ -10,24 +10,24 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     pygame.display.set_caption("Projet Rasko - V1 Complet")
     clock = pygame.time.Clock()
-    font = pygame.font.SysFont("Arial", 24)  # Police pour le score
+    font = pygame.font.SysFont("Arial", 24)  # Police pr score
 
-    # Groupes de sprites
+    # Groupe sprites
     all_sprites = pygame.sprite.Group()
-    bullets = pygame.sprite.Group()  # Groupe spécifique pour les tirs
-    enemies = pygame.sprite.Group()  # Groupe spécifique pour les ennemis
+    bullets = pygame.sprite.Group()  #grp pour tirs
+    enemies = pygame.sprite.Group()  # Groupe pr ennemis
 
     # Création du joueur
     player = Player(SCREEN_WIDTH // 2, SCREEN_HEIGHT - 100)
     all_sprites.add(player)
 
-    # Variables de jeu
+    # Variable de jeu
     score = 0
-    last_enemy_spawn = 0  # Pour gérer le temps d'apparition
+    last_enemy_spawn = 0  # Pour gére le temps d'apparition
 
     running = True
     while running:
-        #Gestion des événements
+        #Gestion des événement
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -36,15 +36,15 @@ def main():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     bullet = player.shoot()
-                    if bullet:  # Si le tir est réussi (cooldown ok)
+                    if bullet:  #tir réussi (cooldown ok)
                         all_sprites.add(bullet)
                         bullets.add(bullet)
 
-        # Spawn des ennemis (Automatique avec le temps)
+        # Spawn des ennemis auto
         now = pygame.time.get_ticks()
         if now - last_enemy_spawn > ENEMY_SPAWN_RATE:
             last_enemy_spawn = now
-            enemy = Enemy()  # Crée un ennemi position aléatoire
+            enemy = Enemy()  # creer enemie pose random
             all_sprites.add(enemy)
             enemies.add(enemy)
 
