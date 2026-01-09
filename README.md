@@ -6,3 +6,11 @@
 2. **Une Tâche = Une Branche** : Créer une branche pour chaque carte Trello.
 3. **Commits Clairs** : Utiliser des verbe (ex: 'Ajouts', 'Correction').
 4. **Pull avant Push** : Toujours récupérer le travail des autres avant d'envoyer les git push.
+
+
+## Architecture du projet
+Le projet est désormais structuré en modules :
+- `entities/` : Contient les êtres vivants (Joueur, Ennemis).
+- `weapons/` : Contient la gestion des armes.
+- `ui/` : Interface utilisateur.
+- `main.py` : Point d'entrée unique du jeu.
