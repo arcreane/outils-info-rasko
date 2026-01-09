@@ -8,7 +8,7 @@ from entities.enemy import Enemy
 def main():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    pygame.display.set_caption("Projet Rasko - Jalon 1 Complet")
+    pygame.display.set_caption("Projet Rasko - V1 Complet")
     clock = pygame.time.Clock()
     font = pygame.font.SysFont("Arial", 24)  # Police pour le score
 

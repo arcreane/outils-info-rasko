@@ -1,6 +1,6 @@
 import pygame
 from entities.entity import Entity
-from weapon.projectiles import Projectile
+from weapons.projectiles import Projectile
 from settings import *
 
 
