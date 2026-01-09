@@ -6,10 +6,3 @@
 2. **Une Tâche = Une Branche** : Créer une branche pour chaque carte Trello.
 3. **Commits Clairs** : Utiliser des verbe (ex: 'Ajoust', 'Correction').
 4. **Pull avant Push** : Toujours récupérer le travail des autres avant d'envoyer le siens.
-
-## Règles d'équipe
-
-1. **Main Stable** : Interdiction de push directement sur main.
-2. **Une Tâche = Une Branche** : Créer une branche pour chaque carte Trello.
-3. **Commits Clairs** : Utiliser des verbe (ex: 'Ajoust', 'Correction').
-4. **Pull avant Push** : Toujours récupérer le travail des autres avant d'envoyer le siens.
