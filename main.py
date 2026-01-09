@@ -3,6 +3,8 @@ import sys
 from settings import *
 from entities.player import Player
 from entities.enemy import Enemy
+from ui.menu import MainMenu
+from ui.hud import HUD
 
 
 def main():
@@ -12,7 +14,12 @@ def main():
     clock = pygame.time.Clock()
     font = pygame.font.SysFont("Arial", 24)  # Police pr score
 
-    # Groupe sprites
+    # État du jeu
+    game_state = "menu"
+    main_menu = MainMenu()
+    hud = HUD()
+
+    # Groupes sprites
     all_sprites = pygame.sprite.Group()
     bullets = pygame.sprite.Group()  #grp pour tirs
     enemies = pygame.sprite.Group()  # Groupe pr ennemis
@@ -27,50 +34,69 @@ def main():
 
     running = True
     while running:
-        #Gestion des événement
+        #Gestion des events
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
 
-            # Tirer avec ESPACE
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE:
-                    bullet = player.shoot()
-                    if bullet:  #tir réussi (cooldown ok)
-                        all_sprites.add(bullet)
-                        bullets.add(bullet)
+            # Si Menu
+            if game_state == "menu":
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+                    game_state = "playing"
+                    # Reset variables
+                    player.current_hp = player.max_hp
+                    score = 0
+                    enemies.empty()
+                    bullets.empty()
 
-        # Spawn des ennemis auto
-        now = pygame.time.get_ticks()
-        if now - last_enemy_spawn > ENEMY_SPAWN_RATE:
-            last_enemy_spawn = now
-            enemy = Enemy()  # creer enemie pose random
-            all_sprites.add(enemy)
-            enemies.add(enemy)
+            # Si Jeu
+            elif game_state == "playing":
+                # Tirer avec ESPACE
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_SPACE:
+                        bullet = player.shoot()
+                        if bullet:  #tir réussi (cooldown ok)
+                            all_sprites.add(bullet)
+                            bullets.add(bullet)
 
-        # Maj
-        all_sprites.update()
+        # Logique
+        if game_state == "menu":
+            main_menu.draw(screen)
 
-        # Collisions
-        # Balles touche Ennemis (True, True veut dire : tuer balle, tuer ennemi)
-        hits = pygame.sprite.groupcollide(enemies, bullets, True, True)
-        for hit in hits:
-            score += 10  # On gagne 10 points
-            print(f"Ennemi détruit ! Score: {score}")
+        elif game_state == "playing":
+            # Spawn des ennemis auto
+            now = pygame.time.get_ticks()
+            if now - last_enemy_spawn > ENEMY_SPAWN_RATE:
+                last_enemy_spawn = now
+                enemy = Enemy()  # creer enemie pose random
+                all_sprites.add(enemy)
+                enemies.add(enemy)
 
-        # Ennemis touche Joueur
-        hits_player = pygame.sprite.spritecollide(player, enemies, False)
-        if hits_player:
-            print("GAME OVER ! Touche par un ennemi.")
-            running = False  # Fin du jeu simple pour l'instant
+            # Maj
+            all_sprites.update()
 
-        # Dessin
-        screen.fill(BLACK)
-        all_sprites.draw(screen)
+            # Collisions
+            # Balles touche Ennemis (True, True veut dire : tuer balle, tuer ennemi)
+            hits = pygame.sprite.groupcollide(enemies, bullets, True, True)
+            for hit in hits:
+                score += 10  # On gagne 10 points
+                print(f"Ennemi détruit ! Score: {score}")
 
-        # affiche score
-        score_text = font.render(f"Score: {score}", True, WHITE)
-        screen.blit(score_text, (10, 10))
+            # Ennemis touche Joueur (Dégâts)
+            hits_player = pygame.sprite.spritecollide(player, enemies, True) # True pour supprimer ennemi
+            for hit in hits_player:
+                player.damage(20)
+                print(f"Aie! Vie: {player.current_hp}")
+                if player.current_hp <= 0:
+                    print("GAME OVER ! Touche par un ennemi.")
+                    game_state = "menu"  # Retour au menu
+
+            # Dessin
+            screen.fill(BLACK)
+            all_sprites.draw(screen)
+
+            # affiche HUD (remplace ancien affichage score)
+            hud.draw(screen, score, player)
 
         pygame.display.flip()
         clock.tick(FPS)
