@@ -23,6 +23,11 @@ class Player(Entity):
         if self.current_hp < 0:
             self.current_hp = 0
 
+    def heal(self, amount):
+        self.current_hp += amount
+        if self.current_hp > self.max_hp:
+            self.current_hp = self.max_hp
+       
     def shoot(self):
         # vérifier le temps actuel
         now = pygame.time.get_ticks()
