@@ -3,8 +3,8 @@
 ## Règles d'équipe
 
 1. **Main Stable** : Interdiction de push directement sur main.
-2. **Une Tâche = Une Branche** : Créer une branche pour chaque carte Trello.
-3. **Commits Clairs** : Utiliser des verbe (ex: 'Ajouts', 'Correction').
+2. **Une Tâche = une carte Trello.
+3. **Commits Clairs** : pas trop de détail ou alors mettre en description
 4. **Pull avant Push** : Toujours récupérer le travail des autres avant d'envoyer les git push.
 
 
@@ -13,4 +13,5 @@ Le projet est désormais structuré en modules :
 - `entities/` : Contient les êtres vivants (Joueur, Ennemis).
 - `weapons/` : Contient la gestion des armes.
 - `ui/` : Interface utilisateur.
-- `main.py` : Point d'entrée unique du jeu.
+- `main.py` : Point d'entré et chef d'orchestres.
+- `settings.py` : toutes les constantes globales (tailles, couleurs, vitesses) .
