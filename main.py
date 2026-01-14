@@ -5,6 +5,7 @@ from settings import *
 from entities.player import Player
 from entities.enemy import Enemy
 from entities.bonus import Bonus
+from entities.boss import Boss
 from ui.menu import MainMenu
 from ui.hud import HUD
 
@@ -33,8 +34,9 @@ def main():
     all_sprites = pygame.sprite.Group()
     bullets = pygame.sprite.Group()  # grp pour tirs
     enemies = pygame.sprite.Group()  # Groupe pr ennemis
-    bonuses = pygame.sprite.Group()  # <--- Groupe pr bonus
-
+    bonuses = pygame.sprite.Group()  # < Groupe pr bonus
+    boss_group = pygame.sprite.Group()  # grp boss
+    boss_spawned = False
     # Création du joueur
     player = Player(SCREEN_WIDTH // 2, SCREEN_HEIGHT - 100)
     all_sprites.add(player)
@@ -61,6 +63,8 @@ def main():
                     enemies.empty()
                     bullets.empty()
                     bonuses.empty()  # <- Reset bonus
+                    boss_group.empty()  # On supprime le boss s'il y en a un
+                    boss_spawned = False
 
             # Si Jeu
             elif game_state == "playing":
@@ -79,12 +83,20 @@ def main():
         elif game_state == "playing":
             now = pygame.time.get_ticks()
 
-            # Spawn des ennemis auto
-            if now - last_enemy_spawn > ENEMY_SPAWN_RATE:
-                last_enemy_spawn = now
-                enemy = Enemy()  # creer enemie pose random
-                all_sprites.add(enemy)
-                enemies.add(enemy)
+            #spawn boss
+            if score >= 200 and not boss_spawned:
+                boss = Boss()
+                all_sprites.add(boss)
+                boss_group.add(boss)
+                boss_spawned = True
+
+                # Spawn des ennemis normaux (Seulement si PAS de boss)
+            if not boss_spawned:
+                if now - last_enemy_spawn > ENEMY_SPAWN_RATE:
+                    last_enemy_spawn = now
+                    enemy = Enemy()
+                    all_sprites.add(enemy)
+                    enemies.add(enemy)
 
             # Spawn des BONUS toutes les 20-30 sec)
             if now - last_bonus_spawn > random.randint(20000, 30000):
@@ -100,6 +112,18 @@ def main():
             hits = pygame.sprite.groupcollide(enemies, bullets, True, True)
             for hit in hits:
                 score += 10  # Win 10 points
+                # Collisions Tirs -> BOSS
+                hits_boss = pygame.sprite.groupcollide(boss_group, bullets, False, True)
+                for boss_hit in hits_boss:
+                    boss_hit.damage(10)
+                    if boss_hit.hp <= 0:
+                        score += 1000
+                        game_state = "menu"
+                        boss_spawned = False
+
+                # Boss touche Joueur
+                if pygame.sprite.spritecollide(player, boss_group, False):
+                    player.damage(5)
 
             # Collisions Joueur -> recup bonus
             hits_bonus = pygame.sprite.spritecollide(player, bonuses, True)
@@ -119,7 +143,8 @@ def main():
             # Dessin
             screen.fill(BLACK)
             all_sprites.draw(screen)
-
+            for boss in boss_group:
+                boss.draw(screen)
             # affiche HUD (remplace ancien affichage score)
             hud.draw(screen, score, player)
 
