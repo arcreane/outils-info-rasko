@@ -7,7 +7,8 @@ class Projectile(Entity):
     def __init__(self, x, y):
         # créer projet (x,y)
         super().__init__(x, y, BULLET_WIDTH, BULLET_HEIGHT)
-        self.image.fill(BULLET_COLOR)
+        self.image = pygame.image.load("asset/img/projectile.png").convert_alpha() #convert_alpha pour transparence autour du sprite
+        self.image = pygame.transform.scale(self.image, (BULLET_WIDTH, BULLET_HEIGHT))
         self.speed = BULLET_SPEED
 
     def update(self):

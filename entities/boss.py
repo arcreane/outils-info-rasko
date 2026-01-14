@@ -10,7 +10,7 @@ class Boss(Entity):
         y = 50
         super().__init__(x, y, 100, 100)
 
-        self.image = pygame.image.load("asset/img/alien.png").convert_alpha()
+        self.image = pygame.image.load("asset/img/boss.png").convert_alpha() #convert_alpha pour transparence autour du sprite
         self.image = pygame.transform.scale(self.image, (100, 100))
         self.rect = self.image.get_rect(topleft=(x, y))
 
