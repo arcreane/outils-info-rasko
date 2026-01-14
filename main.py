@@ -16,6 +16,14 @@ def main():
     clock = pygame.time.Clock()
     font = pygame.font.SysFont("Arial", 24)  # Police pr score
 
+    try:
+
+        pygame.mixer.music.load("/Users/rasko/outils-info-rasko/asset/audio/musique_fond.mp3")
+        pygame.mixer.music.play(loops=-1)
+        pygame.mixer.music.set_volume(0.5)
+    except pygame.error as e:
+        print(f"Erreur lors du chargement de la musique : {e}")
+
     # État du jeu
     game_state = "menu"
     main_menu = MainMenu()
