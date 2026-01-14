@@ -6,12 +6,12 @@ from settings import *
 class Boss(Entity):
     def __init__(self):
         # Pose au centre haut
-        x = SCREEN_WIDTH // 2 - 50
-        y = 50
-        super().__init__(x, y, 100, 100)
+        x = SCREEN_WIDTH // 2 -50
+        y = 45
+        super().__init__(x, y, 150, 150)
 
-        self.image = pygame.image.load("asset/img/boss.png").convert_alpha() #convert_alpha pour transparence autour du sprite
-        self.image = pygame.transform.scale(self.image, (100, 100))
+        self.image = pygame.image.load("asset/img/ennemi1.png").convert_alpha() #convert_alpha pour transparence autour du sprite
+        self.image = pygame.transform.scale(self.image, (150, 150))
         self.rect = self.image.get_rect(topleft=(x, y))
 
         # Stats du boss
