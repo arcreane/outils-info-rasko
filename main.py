@@ -113,13 +113,13 @@ def main():
             for hit in hits:
                 score += 10  # Win 10 points
                 # Collisions Tirs -> BOSS
-                hits_boss = pygame.sprite.groupcollide(boss_group, bullets, False, True)
-                for boss_hit in hits_boss:
-                    boss_hit.damage(10)
-                    if boss_hit.hp <= 0:
-                        score += 1000
-                        game_state = "menu"
-                        boss_spawned = False
+            hits_boss = pygame.sprite.groupcollide(boss_group, bullets, False, True)
+            for boss_hit in hits_boss:
+                boss_hit.damage(10)
+                if boss_hit.hp <= 0:
+                    score += 1000
+                    game_state = "menu"
+                    boss_spawned = False
 
                 # Boss touche Joueur
                 if pygame.sprite.spritecollide(player, boss_group, False):
