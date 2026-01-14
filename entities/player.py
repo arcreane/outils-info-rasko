@@ -7,7 +7,8 @@ from settings import *
 class Player(Entity):
     def __init__(self, x, y):
         super().__init__(x, y, PLAYER_WIDTH, PLAYER_HEIGHT)
-        self.image.fill(GREEN)
+        self.image = pygame.image.load("asset/img/player.png").convert_alpha() #convert_alpha pour transparence autour du sprite
+        self.image = pygame.transform.scale(self.image, (PLAYER_WIDTH, PLAYER_HEIGHT)) #redim
         self.speed = PLAYER_SPEED
 
         # Vie (Ajout pour le HUD)

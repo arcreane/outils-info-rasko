@@ -15,8 +15,8 @@ BLUE = (0, 0, 255)
 
 # settings joueurs
 PLAYER_SPEED = 5
-PLAYER_WIDTH = 40
-PLAYER_HEIGHT = 40
+PLAYER_WIDTH = 75
+PLAYER_HEIGHT = 75
 
 
 # Tir
@@ -27,7 +27,7 @@ BULLET_COLOR = (255, 255, 0) # Jaune
 
 # Ennemi
 ENEMY_SPEED = 3
-ENEMY_WIDTH = 40
-ENEMY_HEIGHT = 40
+ENEMY_WIDTH = 50
+ENEMY_HEIGHT = 50
 ENEMY_COLOR = (255, 0, 0) # Rouge
 ENEMY_SPAWN_RATE = 1500 # ennemie toute les 1,5 sec

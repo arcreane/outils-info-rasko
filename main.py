@@ -13,17 +13,15 @@ from ui.hud import HUD
 def main():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    background = pygame.image.load("asset/img/bg.jpg").convert() #chargement bg
+    background = pygame.transform.scale(background, (SCREEN_WIDTH, SCREEN_HEIGHT)) #adaptation du bg 
     pygame.display.set_caption("Projet Rasko - V2 avec bonus et hud")
     clock = pygame.time.Clock()
     font = pygame.font.SysFont("Arial", 24)  # Police pr score
 
-    try:
-
-        pygame.mixer.music.load("/Users/rasko/outils-info-rasko/asset/audio/musique_fond.mp3")
-        pygame.mixer.music.play(loops=-1)
-        pygame.mixer.music.set_volume(0.5)
-    except pygame.error as e:
-        print(f"Erreur lors du chargement de la musique : {e}")
+    pygame.mixer.music.load("asset/audio/musique_fond.mp3")
+    pygame.mixer.music.play(loops=-1)
+    pygame.mixer.music.set_volume(0.5)
 
     # État du jeu
     game_state = "menu"
@@ -84,7 +82,7 @@ def main():
             now = pygame.time.get_ticks()
 
             #spawn boss
-            if score >= 30 and not boss_spawned:
+            if score >= 50 and not boss_spawned:
                 boss = Boss()
                 all_sprites.add(boss)
                 boss_group.add(boss)
@@ -141,7 +139,8 @@ def main():
                     game_state = "menu"  # Retour au menu
 
             # Dessin
-            screen.fill(BLACK)
+            screen.blit(background, (0, 0)) # <-- AJOUTE CETTE LIGNE
+            all_sprites.draw(screen)
             all_sprites.draw(screen)
             for boss in boss_group:
                 boss.draw(screen)

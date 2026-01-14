@@ -10,7 +10,8 @@ class Boss(Entity):
         y = 50
         super().__init__(x, y, 100, 100)
 
-        self.image.fill((128, 0, 128))  # Violet
+        self.image = pygame.image.load("asset/img/alien.png").convert_alpha()
+        self.image = pygame.transform.scale(self.image, (100, 100))
         self.rect = self.image.get_rect(topleft=(x, y))
 
         # Stats du boss
@@ -30,9 +31,7 @@ class Boss(Entity):
     def damage(self, amount):
         self.hp -= amount
         # change de couleur quand touché
-        if self.hp > 0:
-            self.image.fill((255, 0, 255))  # Flash rose
-        else:
+        if self.hp <= 0:
             self.kill()
 
     def draw(self, screen):
