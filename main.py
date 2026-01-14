@@ -84,7 +84,7 @@ def main():
             now = pygame.time.get_ticks()
 
             #spawn boss
-            if score >= 200 and not boss_spawned:
+            if score >= 30 and not boss_spawned:
                 boss = Boss()
                 all_sprites.add(boss)
                 boss_group.add(boss)

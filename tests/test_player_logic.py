@@ -2,7 +2,7 @@ import unittest
 import sys
 import os
 
-
+#import dossier parent
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from entities.player import Player
