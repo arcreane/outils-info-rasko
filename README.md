@@ -4,19 +4,19 @@
 
 Shooter arcade développé avec Pygame. Cette version intègre un système de vagues, des bonus aléatoires et une interface utilisateur complète (HUD).
 
-## 🎯 But du jeu
+##  But du jeu
 L'objectif est de réaliser le **meilleur score** possible tout en gérant sa survie :
 * **Combat** : Éliminez les ennemis pour gagner des points (**+10 pts** par ennemi).
 * **Survie** : Évitez les collisions qui retirent **20 PV**. La partie s'arrête si la barre de vie tombe à zéro.
 * **Bonus** : Collectez les items qui apparaissent périodiquement pour vous soigner ou booster votre score.
 * **Ambiance** : Une musique de fond tourne en continu dès le lancement du jeu pour une immersion totale.
 
-## 🕹️ Commandes
+##  Commandes
 * **ENTRÉE** : Lancer la partie
 * **ESPACE** : Tirer
 * **FLÈCHES** : Déplacer le vaisseau
 
-## 👥 Règles d'équipe
+## Règles d'équipe
 1. **Main Stable** : Interdiction de push directement sur `main`.
 2. **Une Tâche = une carte Trello**.
 3. **Commits Clairs** : pas trop de détail ou alors mettre en description.
