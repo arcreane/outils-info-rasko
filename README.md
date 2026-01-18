@@ -1,43 +1,44 @@
-Shooter arcade développé avec Pygame, intégrant une gestion dynamique d'entités (joueur, ennemis, bonus) et une interface utilisateur complète.
+#Projet Rasko - Shooter Arcade
+Shooter arcade développé avec Pygame intégrant un système de vagues, des bonus aléatoires et une interface utilisateur complète (HUD).
 
- But du jeu
-L'objectif est de réaliser le score le plus élevé tout en gérant sa survie :
+ #But du jeu
+L'objectif est de réaliser le meilleur score possible tout en gérant sa survie :
 
-Élimination : Chaque ennemi détruit rapporte 10 points.
+Combat : Éliminez les ennemis pour gagner des points (+10 pts par ennemi).
 
-Survie : Une collision avec un ennemi retire 20 PV. Le jeu se termine à 0 PV.
+Survie : Évitez les collisions qui retirent 20 PV. La partie s'arrête si la barre de vie tombe à zéro.
 
-Bonus : Des items apparaissent périodiquement (20-30s) pour restaurer la vie (Cœur) ou augmenter le score (Étoile).
+Bonus : Collectez les items qui apparaissent périodiquement pour vous soigner ou booster votre score.
 
-Ambiance : Une musique de fond tourne en boucle durant toute la session de jeu.
+Ambiance : Une musique de fond tourne en continu dès le lancement du jeu pour une immersion totale.
 
- Commandes
-Action	Touche
-Démarrer	ENTRÉE (depuis le menu)
-Déplacement	FLÈCHES DIRECTIONNELLES
-Tirer	ESPACE
+ #Commandes
+ENTRÉE : Lancer la partie.
 
-Exporter vers Sheets
+ESPACE : Tirer.
+
+FLÈCHES : Déplacer le vaisseau.
 
  Règles d'équipe
-Main Stable : Interdiction de push directement sur main.
+#Pour assurer la stabilité du projet, l'équipe suit ces règles de workflow :
 
-Une Tâche = une carte Trello.
+Main Stable : Interdiction de push directement sur la branche main.
 
-Commits Clairs : Titre explicite (ajouter les détails en description si nécessaire).
+Organisation : Une tâche = une carte Trello.
+
+Commits Clairs : Pas trop de détails, ou alors les mettre en description.
 
 Pull avant Push : Toujours récupérer le travail des autres avant d'envoyer les git push.
 
- Architecture du projet
-Le projet est structuré de manière modulaire :
+ #Architecture du projet
+Le projet est structuré en modules pour séparer les responsabilités :
 
-entities/ : Classes des entités (Joueur, Ennemis, Bonus).
+entities/ : Contient les êtres vivants (Joueur, Ennemis, Bonus).
 
-weapons/ : Logique des projectiles et armements.
+weapons/ : Contient la gestion des armes et projectiles.
 
-ui/ : Composants d'interface (Menu principal, HUD).
+ui/ : Interface utilisateur (Menu, HUD).
 
-main.py : Point d'entrée, boucle de jeu et gestionnaire d'états.
+main.py : Script principal gérant la boucle de jeu et la machine à états.
 
-settings.py : Constantes globales (dimensions, couleurs, fréquences de spawn).
-
+settings.py : Toutes les constantes globales du jeu.
