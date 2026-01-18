@@ -1,6 +1,7 @@
 import pygame
 
-
+""" Module mère qui gère tout les entités mobile du jeu
+"""
 class Entity(pygame.sprite.Sprite):
     def __init__(self, x, y, width, height):
         super().__init__()

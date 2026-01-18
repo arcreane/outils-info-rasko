@@ -2,7 +2,7 @@ import pygame
 from entities.entity import Entity
 from settings import *
 
-
+"""Entité qui possède une barre de vie propre , une plus grande taille et un mouvement latéral """
 class Boss(Entity):
     def __init__(self):
         # Pose au centre haut

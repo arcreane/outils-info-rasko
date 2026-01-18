@@ -1,7 +1,10 @@
 import pygame
 from settings import *
 
-
+"""Dessine les élément de l'interface sur la suface de l'écran: 
+ -la police de caractere
+ -le score 
+ - barre de vie """
 class HUD:
     def __init__(self):
         self.font = pygame.font.SysFont("Arial", 24, bold=True)

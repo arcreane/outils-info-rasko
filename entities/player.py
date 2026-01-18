@@ -3,7 +3,8 @@ from entities.entity import Entity
 from weapons.projectiles import Projectile
 from settings import *
 
-
+""" Représente le vaisseau controler par le joueur.
+cette classe gere les deplacement du vaisseau ,le systeme de santé et le cooldown des tirs """
 class Player(Entity):
     def __init__(self, x, y):
         super().__init__(x, y, PLAYER_WIDTH, PLAYER_HEIGHT)

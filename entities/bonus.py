@@ -3,7 +3,10 @@ import random
 from entities.entity import Entity
 from settings import *
 
-
+"""Représente les objets bonus qui tombe a l'écran.
+2 types de bonus : 
+- santé
+- augmentation du score""" 
 class Bonus(Entity):
     def __init__(self):
         # pos radnom en haut

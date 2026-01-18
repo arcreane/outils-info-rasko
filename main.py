@@ -9,7 +9,7 @@ from entities.boss import Boss
 from ui.menu import MainMenu
 from ui.hud import HUD
 
-
+""" fonction principal , il gère la boucle principal du jeu , les états (menu/jeu), la musique ,  l'apparition des ennemis, des bonus et du boss  et enfin les collisions """
 def main():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -82,7 +82,7 @@ def main():
             now = pygame.time.get_ticks()
 
             #spawn boss
-            if score >= 10 and not boss_spawned:
+            if score >= 100 and not boss_spawned:
                 boss = Boss()
                 all_sprites.add(boss)
                 boss_group.add(boss)

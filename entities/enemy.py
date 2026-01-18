@@ -3,7 +3,7 @@ from entities.entity import Entity
 from settings import *
 import random
 
-
+''' Module qui gère les ennemies qui apparaissent de manière aléatoires, le mouvement descendant et la suppression automatique pour libérer la mémoire'''
 class Enemy(Entity):
     def __init__(self):
         # ennemie a pose X aléatoire en haut

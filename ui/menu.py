@@ -1,6 +1,6 @@
 import pygame
 from settings import *
-
+"""Gère l'affiche du menu principal au lancement du jeu """
 class MainMenu:
     def __init__(self):
         self.font_title = pygame.font.SysFont("Arial", 50, bold=True)
