@@ -1,17 +1,43 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/lCgyrFil)
+Shooter arcade développé avec Pygame, intégrant une gestion dynamique d'entités (joueur, ennemis, bonus) et une interface utilisateur complète.
 
-## Règles d'équipe
+ But du jeu
+L'objectif est de réaliser le score le plus élevé tout en gérant sa survie :
 
-1. **Main Stable** : Interdiction de push directement sur main.
-2. **Une Tâche = une carte Trello.
-3. **Commits Clairs** : pas trop de détail ou alors mettre en description
-4. **Pull avant Push** : Toujours récupérer le travail des autres avant d'envoyer les git push.
+Élimination : Chaque ennemi détruit rapporte 10 points.
 
+Survie : Une collision avec un ennemi retire 20 PV. Le jeu se termine à 0 PV.
 
-## Architecture du projet
-Le projet est désormais structuré en modules :
-- `entities/` : Contient les êtres vivants (Joueur, Ennemis).
-- `weapons/` : Contient la gestion des armes.
-- `ui/` : Interface utilisateur.
-- `main.py` : Point d'entré et chef d'orchestres.
-- `settings.py` : toutes les constantes globales (tailles, couleurs, vitesses) .
+Bonus : Des items apparaissent périodiquement (20-30s) pour restaurer la vie (Cœur) ou augmenter le score (Étoile).
+
+Ambiance : Une musique de fond tourne en boucle durant toute la session de jeu.
+
+ Commandes
+Action	Touche
+Démarrer	ENTRÉE (depuis le menu)
+Déplacement	FLÈCHES DIRECTIONNELLES
+Tirer	ESPACE
+
+Exporter vers Sheets
+
+ Règles d'équipe
+Main Stable : Interdiction de push directement sur main.
+
+Une Tâche = une carte Trello.
+
+Commits Clairs : Titre explicite (ajouter les détails en description si nécessaire).
+
+Pull avant Push : Toujours récupérer le travail des autres avant d'envoyer les git push.
+
+ Architecture du projet
+Le projet est structuré de manière modulaire :
+
+entities/ : Classes des entités (Joueur, Ennemis, Bonus).
+
+weapons/ : Logique des projectiles et armements.
+
+ui/ : Composants d'interface (Menu principal, HUD).
+
+main.py : Point d'entrée, boucle de jeu et gestionnaire d'états.
+
+settings.py : Constantes globales (dimensions, couleurs, fréquences de spawn).
+
