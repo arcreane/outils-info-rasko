@@ -71,13 +71,6 @@ def main():
         elif game_state == "playing":
             now = pygame.time.get_ticks()
 
-            # Spawn des ennemis auto
-            if now - last_enemy_spawn > ENEMY_SPAWN_RATE:
-                last_enemy_spawn = now
-                enemy = Enemy()  # creer enemie pose random
-                all_sprites.add(enemy)
-                enemies.add(enemy)
-
             # Spawn des BONUS toutes les 20-30 sec)
             if now - last_bonus_spawn > random.randint(20000, 30000):
                 last_bonus_spawn = now
